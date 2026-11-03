@@ -33,3 +33,7 @@ All personal data stays on your machine.
 | agent | `pl-localizer` | natural Polish version of the CV |
 
 No MCP server is bundled: LinkedIn has no public profile API, so the workflow runs on the offline data export.
+
+## License
+Proprietary, all rights reserved. See [LICENSE](LICENSE). Copying, installing or modifying this plugin requires the
+author's written permission.

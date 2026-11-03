@@ -13,5 +13,6 @@
     "polish",
     "ats"
   ],
-  "repository": "https://github.com/KacperWeiss/linkedin-resume-writer-helper"
+  "repository": "https://github.com/KacperWeiss/linkedin-resume-writer-helper",
+  "license": "SEE LICENSE IN LICENSE"
 }
