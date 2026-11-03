@@ -1,6 +1,6 @@
 {
   "name": "linkedin-resume-writer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Builds a tailored CV in English and Polish from a LinkedIn data export, audits the LinkedIn profile, and renders ATS + modern PDF layouts into the Windows Documents folder.",
   "author": {
     "name": "KacperWeiss"

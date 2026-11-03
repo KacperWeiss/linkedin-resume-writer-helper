@@ -14,8 +14,9 @@ Run the full CV workflow. Talk to the user in their language (default Polish). W
 2. **Parse** with the `linkedin-export-parse` skill → `work/linkedin-raw.json`. Summarise what's there and what's thin.
 3. **Target** with the `job-ad-analysis` skill → `work/job-analysis.md`. With no job ad, ask for
    the target role, seniority and market.
-4. **Interview + audit** with the `linkedin-profile-audit` skill. Ask about gaps position by position,
-   save facts to `%USERPROFILE%/Documents/CV/data/career-facts.md` (persistent across jobs and projects; read it first, append new facts), and produce `work/linkedin-improvements.md`. Pause so the user
+4. **Interview + audit** with the `linkedin-profile-audit` skill. For each section (positions, education,
+   skills, etc.) summarise what is known and let the user choose: use it, edit it, rewrite it or start over.
+   Save facts to `%USERPROFILE%/Documents/CV/data/career-facts.md` (persistent across jobs and projects; read it first), and produce `work/linkedin-improvements.md`. Pause so the user
    can review and update LinkedIn.
 5. **Write** with the `cv-builder` skill → `work/cv-data.en.json`. Then the `pl-localizer` subagent
    → `work/cv-data.pl.json`.
