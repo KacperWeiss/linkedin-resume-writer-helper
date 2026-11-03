@@ -174,9 +174,12 @@ def build_modern(cv, L) -> str:
             + section(L["projects"], r_projects(cv, L))
             + section(L["education"], r_education(cv, L))
             + section(L["certifications"], r_certs(cv))
-            + r_extras(cv))
+            + r_extras(cv)
+            # Footer goes inside the main column: after a fragmented CSS grid, Chromium pushes
+            # trailing content onto a new page even when there is room left.
+            + footer(cv))
     return (header(cv) + "</header>"
-            + f'<div class="grid"><aside>{side}</aside><main>{main}</main></div>' + footer(cv))
+            + f'<div class="grid"><aside>{side}</aside><main>{main}</main></div>')
 
 
 def page(cv, layout) -> str:

@@ -2,8 +2,10 @@
 :root { --accent: #0b5cad; --side: #eef3f9; }
 body.modern header { background: var(--accent); color: #fff; padding: 14px 16px; border-radius: 4px; }
 body.modern .headline { color: #dbe8f7; }
-body.modern .grid { display: grid; grid-template-columns: 31% 1fr; gap: 14px; margin-top: 4px; }
-body.modern aside { align-self: start; background: var(--side); padding: 2px 10px 10px; border-radius: 4px; font-size: 8.8pt; }
+/* Flex instead of grid: Chromium fragments flex rows across printed pages more cleanly. */
+body.modern .grid { display: flex; align-items: flex-start; gap: 14px; margin-top: 4px; }
+body.modern main { flex: 1; min-width: 0; }
+body.modern aside { flex: 0 0 31%; background: var(--side); padding: 2px 10px 10px; border-radius: 4px; font-size: 8.8pt; }
 body.modern aside ul.plain { list-style: none; padding: 0; }
 body.modern aside ul.plain li { word-break: break-word; }
 body.modern h2 { color: var(--accent); }
