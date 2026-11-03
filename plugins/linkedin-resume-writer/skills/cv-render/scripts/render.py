@@ -167,12 +167,13 @@ def build_modern(cv, L) -> str:
     contact = "".join(f"<li>{c}</li>" for c in contact_items(b))
     side = (section(L["contact"], f'<ul class="plain">{contact}</ul>')
             + section(L["skills"], r_skills_tags(cv))
-            + section(L["languages"], r_languages(cv))
-            + section(L["certifications"], r_certs(cv)))
+            + section(L["languages"], r_languages(cv)))
+    # Certifications live in the main column: long names would overflow the narrow sidebar onto the next page.
     main = (section(L["summary"], f'<p>{rich(b.get("summary"))}</p>' if b.get("summary") else "")
             + section(L["experience"], r_experience(cv, L))
             + section(L["projects"], r_projects(cv, L))
             + section(L["education"], r_education(cv, L))
+            + section(L["certifications"], r_certs(cv))
             + r_extras(cv))
     return (header(cv) + "</header>"
             + f'<div class="grid"><aside>{side}</aside><main>{main}</main></div>' + footer(cv))
