@@ -1,0 +1,13 @@
+/* Modern: two columns, accent colour, skill tags */
+:root { --accent: #0b5cad; --side: #eef3f9; }
+body.modern header { background: var(--accent); color: #fff; padding: 14px 16px; border-radius: 4px; }
+body.modern .headline { color: #dbe8f7; }
+body.modern .grid { display: grid; grid-template-columns: 31% 1fr; gap: 14px; margin-top: 4px; }
+body.modern aside { align-self: start; background: var(--side); padding: 2px 10px 10px; border-radius: 4px; font-size: 8.8pt; }
+body.modern aside ul.plain { list-style: none; padding: 0; }
+body.modern aside ul.plain li { word-break: break-word; }
+body.modern h2 { color: var(--accent); }
+body.modern main h2 { border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
+body.modern .tags { display: flex; flex-wrap: wrap; gap: 3px; }
+body.modern .tag { background: #fff; border: 0.75px solid #b6c9e0; border-radius: 3px; padding: 0 5px; font-size: 8.2pt; }
+body.modern h3 { color: #0d2a4a; }

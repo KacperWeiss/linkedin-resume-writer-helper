@@ -1,0 +1,48 @@
+{
+  "lang": "en",
+  "basics": {
+    "name": "Alex Sample",
+    "headline": "Backend Developer · Example Stack",
+    "email": "alex@example.com",
+    "phone": "+00 000 000 000",
+    "location": "Example City",
+    "links": [{ "label": "example.com/alex", "url": "https://example.com/alex" }],
+    "summary": "Fictional placeholder profile used only to preview the templates. Supports **bold** text."
+  },
+  "skills": [
+    { "category": "Languages", "items": ["Language A", "Language B"] },
+    { "category": "Tools", "items": ["Tool A", "Tool B", "Tool C"] }
+  ],
+  "experience": [
+    {
+      "title": "Senior Developer",
+      "company": "Example Company",
+      "location": "Example City",
+      "start": "01/2022",
+      "end": "",
+      "summary": "One-line context about the product or team.",
+      "highlights": [
+        "Achievement with a measurable result, e.g. **-30%** processing time.",
+        "Second achievement bullet."
+      ],
+      "tech": ["Tech A", "Tech B"]
+    },
+    {
+      "title": "Developer",
+      "company": "Another Example Ltd",
+      "start": "01/2019",
+      "end": "12/2021",
+      "highlights": ["Single bullet for an older role."]
+    }
+  ],
+  "projects": [
+    { "name": "example-project", "url": "https://example.com/project", "description": "Short project description.", "tech": ["Tech A"] }
+  ],
+  "education": [
+    { "institution": "Example University", "degree": "BSc", "field": "Example Field", "start": "2015", "end": "2019" }
+  ],
+  "certifications": [{ "name": "Example Certificate", "issuer": "Example Org", "date": "2023" }],
+  "languages": [{ "name": "Language X", "level": "native" }, { "name": "English", "level": "C1" }],
+  "extras": [{ "title": "Interests", "items": ["Example interest"] }],
+  "gdpr_clause": "I hereby consent to the processing of my personal data for the purposes of the recruitment process in accordance with Regulation (EU) 2016/679 (GDPR)."
+}

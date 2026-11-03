@@ -1,0 +1,14 @@
+{
+  "name": "resume-tools",
+  "description": "Tools for writing CVs from LinkedIn data (EN/PL, PDF).",
+  "owner": {
+    "name": "KacperWeiss"
+  },
+  "plugins": [
+    {
+      "name": "linkedin-resume-writer",
+      "source": "./plugins/linkedin-resume-writer",
+      "description": "LinkedIn export → improved profile → tailored bilingual (EN/PL) CV rendered to PDF in two layouts."
+    }
+  ]
+}
