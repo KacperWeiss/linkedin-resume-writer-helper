@@ -20,6 +20,13 @@ Inputs: `work/linkedin-raw.json` (from linkedin-export-parse), optionally `work/
         starting point and as hints for the questions. Replace the section with the new answers.
      4. **Delete and start over**: drop what we know about this section and interview from scratch.
         Confirm before removing anything from `career-facts.md`.
+   - Ask a second question in the same call: **"Don't ask again for the remaining sections"**
+     (in Polish: "Nie pytaj ponownie dla następnych sekcji"), yes/no. The tool allows only 4 options
+     per question, so this can't be a fifth option. If the user says yes, apply the chosen option to
+     every remaining section without asking again. Still show each section's short summary. With
+     option 2, still ask what to change in each section. With option 4, list everything that will
+     be removed and confirm once. The choice lasts only for this session. If the user later asks to
+     choose per section again, go back to asking.
    - In an interview (options 3 and 4, or when there's nothing yet), ask 2–4 targeted questions per batch.
      Experience: scale, latency/throughput numbers, team size, ownership, incidents solved, tech stack.
      Education: school, degree, field, dates, thesis, honours, student research groups, exchanges, unfinished
