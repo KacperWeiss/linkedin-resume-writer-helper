@@ -111,9 +111,15 @@ def r_education(cv, L) -> str:
 
 
 def r_certs(cv) -> str:
-    items = [" — ".join(filter(None, [c.get("name"), c.get("issuer"), c.get("date")]))
-             for c in cv.get("certifications", [])]
-    return ul(items)
+    items = []
+    for c in cv.get("certifications", []):
+        name = rich(c.get("name"))
+        if name and c.get("url"):
+            name = f'<a href="{esc(c["url"])}">{name}</a>'
+        parts = [p for p in [name, rich(c.get("issuer")), rich(c.get("date"))] if p]
+        if parts:
+            items.append(f"<li>{' — '.join(parts)}</li>")
+    return "<ul>" + "".join(items) + "</ul>" if items else ""
 
 
 def r_languages(cv) -> str:

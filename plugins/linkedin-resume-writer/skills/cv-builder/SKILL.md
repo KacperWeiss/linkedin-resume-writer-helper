@@ -34,7 +34,7 @@ Outputs: `work/cv-data.en.json`, then `work/cv-data.pl.json`.
   }],
   "projects": [{"name": "", "url": "", "description": "", "highlights": [], "tech": []}],
   "education": [{"institution": "", "degree": "", "field": "", "start": "", "end": "", "notes": ""}],
-  "certifications": [{"name": "", "issuer": "", "date": ""}],
+  "certifications": [{"name": "", "issuer": "", "date": "", "url": "optional credential link"}],
   "languages": [{"name": "English", "level": "C1"}],
   "extras": [{"title": "Interests", "items": []}],
   "gdpr_clause": "text or omit"
