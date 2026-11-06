@@ -5,15 +5,19 @@ description: Write tailored CV content in English and Polish as structured cv-da
 
 # CV content builder
 
-Inputs: `work/linkedin-raw.json`, `%USERPROFILE%/Documents/CV/data/career-facts.md` (persistent across jobs and projects; read it first, append new facts), `work/job-analysis.md` (optional), the improved
-texts in `work/linkedin-improvements.md` (if they exist).
-Outputs: `work/cv-data.en.json`, then `work/cv-data.pl.json`.
+Files live in the CV library (see the `cv-edit` skill): `<person>` = `Documents/CV_<FirstLast>`, `<cv>` = this CV's folder
+`<person>/<Company|Ogólne>/<dd.mm.yyyy>` (create it with `cv_store.py new` if it doesn't exist yet).
+
+Inputs: `<person>/_data/linkedin-raw.json`, `<person>/_data/career-facts.md` (persistent across CVs; read it
+first, append new facts), `<cv>/job-analysis.md` (optional), the improved texts in `<cv>/linkedin-improvements.md`
+(if they exist).
+Outputs: `<cv>/cv-data.en.json`, then `<cv>/cv-data.pl.json`.
 
 ## Steps
 1. Write `cv-data.en.json` following the schema below (see `../cv-render/examples/sample-cv.json`).
 2. Hand the EN file to the **pl-localizer** subagent → `cv-data.pl.json`.
 3. Hand both files plus `job-analysis.md` to the **recruiter-reviewer** subagent. Apply
-   the fixes you agree with. Ask the user about fixes that need new facts.
+   the fixes you agree with and save the findings to `<cv>/review.md`. Ask the user about fixes that need new facts.
 4. Render with the cv-render skill.
 
 ## Schema (all fields optional except basics.name)

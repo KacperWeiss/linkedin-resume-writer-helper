@@ -4,7 +4,8 @@
 Usage:
   python render.py <cv-data.json> [--layout ats|modern|both] [--out-dir DIR] [--suffix TEXT] [--keep-html]
 
-Default out-dir: <Windows Documents>/CV. Output name: CV_<Name>_<LANG>_<Layout>[_suffix].pdf
+Default out-dir: the folder that holds the cv-data file, i.e. the CV's own folder in the CV library
+(Documents/CV_<FirstLast>/<Company|Ogólne>/<dd.mm.yyyy>). Output name: CV_<Name>_<LANG>_<Layout>[_suffix].pdf
 """
 import argparse
 import html
@@ -198,15 +199,6 @@ def page(cv, layout) -> str:
             f'<style>{css}</style></head><body class="{layout}">{body}</body></html>')
 
 
-def documents_dir() -> pathlib.Path:
-    if os.name == "nt":
-        import ctypes
-        buf = ctypes.create_unicode_buffer(260)
-        if ctypes.windll.shell32.SHGetFolderPathW(None, 5, None, 0, buf) == 0:  # CSIDL_PERSONAL
-            return pathlib.Path(buf.value)
-    return pathlib.Path.home() / "Documents"
-
-
 def find_browser() -> str:
     candidates = [os.environ.get("CV_BROWSER", "")]
     for base in (os.environ.get("ProgramFiles(x86)", ""), os.environ.get("ProgramFiles", ""), os.environ.get("LOCALAPPDATA", "")):
@@ -239,7 +231,7 @@ def main() -> None:
     a = ap.parse_args()
 
     cv = json.loads(pathlib.Path(a.data).read_text(encoding="utf-8"))
-    out_dir = pathlib.Path(a.out_dir) if a.out_dir else documents_dir() / "CV"
+    out_dir = pathlib.Path(a.out_dir) if a.out_dir else pathlib.Path(a.data).resolve().parent
     out_dir.mkdir(parents=True, exist_ok=True)
     ascii_name = unicodedata.normalize("NFKD", cv["basics"]["name"].replace("ł", "l").replace("Ł", "L"))
     name = re.sub(r"[^A-Za-z0-9]+", "_", ascii_name.encode("ascii", "ignore").decode()).strip("_")

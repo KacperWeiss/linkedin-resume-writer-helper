@@ -5,13 +5,16 @@ description: Parse a LinkedIn "Download your data" export (ZIP or folder, e.g. B
 
 # LinkedIn export → JSON
 
-1. Find inputs in the project's `input/` folder (or wherever the user says):
+1. Find inputs wherever the user says, otherwise in `input/` of the current folder:
    - `*LinkedInDataExport*.zip` or an extracted folder with `Profile.csv`, `Positions.csv`, …
    - optionally a profile PDF (`Profile.pdf` from "More → Save to PDF").
 2. Run the parser from this skill's base directory:
    ```
-   python scripts/parse_export.py "<zip-or-dir>" work/linkedin-raw.json
+   python scripts/parse_export.py "<zip-or-dir>"                     # → Documents/CV_<FirstLast>/_data/linkedin-raw.json
+   python scripts/parse_export.py "<zip-or-dir>" --name "First Last" # when the export has no Profile.csv
    ```
+   The name comes from `Profile.csv`. A copy of the export is kept in `_data/sources/`, so the CV library
+   (see the `cv-edit` skill) has everything needed later. Copy a profile PDF there as well.
    It keeps only CV-relevant CSVs (Profile, Positions, Education, Skills, Certifications,
    Languages, Projects, Courses, Honors, Publications, Recommendations_Received, contact
    data…) and prints row counts.

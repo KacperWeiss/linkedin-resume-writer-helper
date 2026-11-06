@@ -3,14 +3,24 @@
 
 Only CV-relevant CSVs are kept (messages, connections, ads data etc. are skipped).
 
-Usage: python parse_export.py <export.zip | export_dir> <out.json>
+Usage: python parse_export.py <export.zip | export_dir> [out.json] [--name "First Last"]
+
+Without out.json the result goes to the person's CV library folder:
+Documents/CV_<FirstLast>/_data/linkedin-raw.json (the name comes from Profile.csv or --name),
+and a copy of the export is kept in _data/sources/.
 """
+import argparse
 import csv
 import io
 import json
 import pathlib
+import shutil
 import sys
 import zipfile
+
+# Shared CV library helpers live in the cv-edit skill.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2] / "cv-edit" / "scripts"))
+import cv_store  # noqa: E402
 
 RELEVANT = {
     "profile", "profile summary", "positions", "education", "skills", "certifications",
@@ -52,16 +62,41 @@ def iter_csvs(src: pathlib.Path):
         sys.exit(f"Not a ZIP or directory: {src}")
 
 
+def profile_name(data: dict) -> str:
+    for row in data.get("Profile", []):
+        name = " ".join(filter(None, [row.get("First Name"), row.get("Last Name")]))
+        if name:
+            return name
+    return ""
+
+
 def main() -> None:
-    if len(sys.argv) != 3:
-        sys.exit(__doc__)
-    src, out = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("src")
+    ap.add_argument("out", nargs="?")
+    ap.add_argument("--name", help="person's full name, when Profile.csv is missing from the export")
+    a = ap.parse_args()
+    src = pathlib.Path(a.src)
     data, skipped = {}, []
     for stem, text in iter_csvs(src):
         if stem.lower() in RELEVANT:
             data[stem] = read_csv_text(text)
         else:
             skipped.append(stem)
+    if a.out:
+        out = pathlib.Path(a.out)
+    else:
+        name = a.name or profile_name(data)
+        if not name:
+            sys.exit("No name in Profile.csv. Pass --name \"First Last\" or an explicit out.json path.")
+        data_dir = cv_store.person_dir(name) / cv_store.DATA
+        out = data_dir / "linkedin-raw.json"
+        sources = data_dir / "sources"
+        sources.mkdir(parents=True, exist_ok=True)
+        if src.is_file():
+            shutil.copy2(src, sources / src.name)
+        else:
+            shutil.copytree(src, sources / src.name, dirs_exist_ok=True)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {out}")

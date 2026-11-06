@@ -5,7 +5,10 @@ description: Audit and improve a LinkedIn profile (headline, About, experience d
 
 # LinkedIn profile audit
 
-Inputs: `work/linkedin-raw.json` (from linkedin-export-parse), optionally `work/job-analysis.md`.
+Paths are in the CV library (see the `cv-edit` skill): `<person>` = `Documents/CV_<FirstLast>`, `<cv>` = the CV's folder
+`<person>/<Company|Ogólne>/<dd.mm.yyyy>`.
+
+Inputs: `<person>/_data/linkedin-raw.json` (from linkedin-export-parse), optionally `<cv>/job-analysis.md`.
 
 ## Process
 1. **Check each section with the user before interviewing.** Go section by section: each
@@ -31,8 +34,8 @@ Inputs: `work/linkedin-raw.json` (from linkedin-export-parse), optionally `work/
      Experience: scale, latency/throughput numbers, team size, ownership, incidents solved, tech stack.
      Education: school, degree, field, dates, thesis, honours, student research groups, exchanges, unfinished
      or ongoing studies, courses not on LinkedIn, and how much of it to put on the CV.
-   Record the results in `%USERPROFILE%/Documents/CV/data/career-facts.md` (persistent across jobs and projects; read it first), one `##` section per area. This file is the single source of truth for CV writing.
-2. Produce `work/linkedin-improvements.md`, one section per LinkedIn field, each with:
+   Record the results in `<person>/_data/career-facts.md` (persistent across CVs; read it first), one `##` section per area. This file is the single source of truth for CV writing.
+2. Produce `<cv>/linkedin-improvements.md` (or `<person>/_data/linkedin-improvements.md` when there is no CV folder yet), one section per LinkedIn field, each with:
    - **Current** (verbatim) → **Proposed** (ready to paste) → **Why** (one line).
    - Respect LinkedIn limits: headline ≤ 220 chars, About ≤ 2600 chars, position description ≤ 2000 chars.
 3. Fields to cover: Headline, About, each Experience entry, Education, Skills (top 5 pinned + full

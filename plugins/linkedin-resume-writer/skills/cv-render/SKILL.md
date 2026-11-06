@@ -1,19 +1,21 @@
 ---
 name: cv-render
-description: Render cv-data JSON (EN/PL) into PDF CVs in two layouts, ATS single-column and modern two-column, using headless Edge/Chrome, saved to the Windows Documents\CV folder. Use when the CV content is ready and PDFs are needed.
+description: Render cv-data JSON (EN/PL) into PDF CVs in two layouts, ATS single-column and modern two-column, using headless Edge/Chrome, saved next to the cv-data files in the CV's library folder (Documents\CV_<FirstLast>\<Company|Ogólne>\<dd.mm.yyyy>). Use when the CV content is ready and PDFs are needed.
 ---
 
 # Render CV to PDF
 
 From this skill's base directory:
 ```
-python scripts/render.py <path>/cv-data.en.json            # both layouts → Documents\CV
+python scripts/render.py <cv>/cv-data.en.json              # both layouts → <cv> (the data file's folder)
 python scripts/render.py <path>/cv-data.pl.json --layout ats
 python scripts/render.py <file> --suffix LowLatency          # tag a version for a specific job ad
 python scripts/render.py <file> --out-dir <dir> --keep-html  # preview / debug
 ```
-- Output name: `CV_<Name>_<EN|PL>_<ATS|Modern>[_suffix].pdf`. The Documents folder is
-  resolved through the Windows shell API, so it works when Documents is redirected (e.g. to OneDrive).
+- Output name: `CV_<Name>_<EN|PL>_<ATS|Modern>[_suffix].pdf`, written to the folder that holds the
+  cv-data file, i.e. the CV's own folder in the CV library (see the `cv-edit` skill). Company and date are
+  in the folder path, so `--suffix` is rarely needed.
+- After rendering, record it: `python ../cv-edit/scripts/cv_store.py log "<cv>" "rendered"`.
 - Needs only Python 3 and Microsoft Edge or Chrome. Set `CV_BROWSER` to override the browser.
 - Templates live in `templates/` (`base.css` + `ats.css` / `modern.css`). Section headings for
   each language are in `LABELS` in `scripts/render.py`.
