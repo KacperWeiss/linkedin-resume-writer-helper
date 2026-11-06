@@ -7,7 +7,7 @@ description: Parse a LinkedIn "Download your data" export (ZIP or folder, e.g. B
 
 1. Find inputs wherever the user says, otherwise in `input/` of the current folder:
    - `*LinkedInDataExport*.zip` or an extracted folder with `Profile.csv`, `Positions.csv`, …
-   - optionally a profile PDF (`Profile.pdf` from "More → Save to PDF").
+   - optionally a profile PDF (`Profile.pdf` from the profile page → "Resources" → "Save to PDF").
 2. Run the parser from this skill's base directory:
    ```
    python scripts/parse_export.py "<zip-or-dir>"                     # → Documents/CV_<FirstLast>/_data/linkedin-raw.json

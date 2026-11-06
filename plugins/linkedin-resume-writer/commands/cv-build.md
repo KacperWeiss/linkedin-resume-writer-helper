@@ -17,7 +17,7 @@ If the user wants to change a CV that already exists, use the `cv-edit` skill in
    If the export is missing, walk the user through LinkedIn → Settings → Data privacy →
    "Get a copy of your data". Selecting only "Profile" is NOT enough (it gives just Profile.csv).
    Select Positions, Education, Skills, Certifications, Languages, Projects, Recommendations too, or the
-   full archive. Fastest alternative: profile page → More → Save to PDF. Then wait.
+   full archive. Fastest alternative: profile page → Resources → Save to PDF. Then wait.
 2. **Parse** with the `linkedin-export-parse` skill → `<person>/_data/linkedin-raw.json`. Summarise what's there and what's thin.
 3. **Target.** Ask who the CV is for if it isn't clear: the company from the job ad (or none → `Ogólne`), the role,
    and optionally a contact (recruiter or person it will be sent to). Create the folder:
